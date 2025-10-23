@@ -1,4 +1,5 @@
 Dinero Inventory Management System
+
 Description
 The Dinero Inventory Management System is a Spring Boot-based REST API that manages products, product categories, and stock transactions. It supports creating, updating, and deleting products, managing categories, tracking stock changes, and calculating total inventory value. All actions are logged and stored in a MySQL database.
 Setup Instructions
