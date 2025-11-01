@@ -1,11 +1,9 @@
 package com.example.InventoryManagementSystem.inventory.system.Controllers;
 
 import com.example.InventoryManagementSystem.inventory.system.DTOs.ProductDto;
-import com.example.InventoryManagementSystem.inventory.system.Entities.Product;
 import com.example.InventoryManagementSystem.inventory.system.Mapper.Mappers;
 import com.example.InventoryManagementSystem.inventory.system.Repositories.CategoryRepository;
 import com.example.InventoryManagementSystem.inventory.system.Repositories.ProductRepository;
-import com.example.InventoryManagementSystem.inventory.system.Response.SimpleResponse;
 import com.example.InventoryManagementSystem.inventory.system.Service.ProductService.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

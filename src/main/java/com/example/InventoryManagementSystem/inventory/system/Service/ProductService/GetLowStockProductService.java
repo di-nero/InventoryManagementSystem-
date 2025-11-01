@@ -17,7 +17,11 @@ public class GetLowStockProductService {
     private Mappers mappers;
 
     public ResponseEntity<List<ProductDto>> getLowStockProduct(int thresholdId){
-        var result = productRepository.findByQuantityLessThanEqual(thresholdId).stream().map(product -> mappers.toProductDto(product)).toList();
+        var result = productRepository
+                .findByQuantityLessThanEqual(thresholdId)
+                .stream()
+                .map(product -> mappers.toProductDto(product))
+                .toList();
         return ResponseEntity.ok(result);
     }
 }

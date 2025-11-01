@@ -4,7 +4,7 @@ import com.example.InventoryManagementSystem.inventory.system.DTOs.ProductDto;
 import com.example.InventoryManagementSystem.inventory.system.Entities.Product;
 import com.example.InventoryManagementSystem.inventory.system.Mapper.Mappers;
 import com.example.InventoryManagementSystem.inventory.system.Repositories.ProductRepository;
-import com.example.InventoryManagementSystem.inventory.system.Response.SimpleResponse;
+import com.example.InventoryManagementSystem.inventory.system.Response.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +21,6 @@ public class CreateProductService {
         var result = productRepository.save(product);
         var data = mappers.toProductDto(result);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(SimpleResponse.responseBuilder(true, "Product created successfully" , data));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.responseBuilder(true, "Product created successfully" , data));
     }
 }

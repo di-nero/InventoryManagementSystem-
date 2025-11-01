@@ -3,6 +3,7 @@ package com.example.InventoryManagementSystem.inventory.system.Entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,15 +14,21 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "product name is required")
+    @Size(min = 2 , max = 100 , message = "product name must be between 2 and 100 characters")
     @Column(unique = true , nullable = false)
     private String name;
 
+    @NotNull(message = "category is required")
     @ManyToOne
     @JsonBackReference
     private Category category;
 
+    @Column(nullable = false , columnDefinition = "int default 0")
+    @Min(value = 0 , message = "quantity cannot be negative")
     private Integer quantity;
 
+    @DecimalMin(value = "0.0" , inclusive = false , message = "price must be grater than 0")
     private Double price;
 
     @OneToMany(mappedBy = "product")
@@ -72,7 +79,7 @@ public class Product {
     }
 
     public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+        this.quantity = (quantity == null) ? 0 : quantity;
     }
 
     public Double getPrice() {

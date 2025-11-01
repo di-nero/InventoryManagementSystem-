@@ -17,6 +17,10 @@ public class GetAllProductService {
     @Autowired
     private Mappers mappers;
     public ResponseEntity<List<ProductDto>> getAllProduct(){
-        return ResponseEntity.ok(productRepository.findAll().stream().map(product -> mappers.toProductDto(product)).toList());
+        return ResponseEntity.ok(productRepository
+                .findAll()
+                .stream()
+                .map(product -> mappers.toProductDto(product))
+                .toList());
     }
 }

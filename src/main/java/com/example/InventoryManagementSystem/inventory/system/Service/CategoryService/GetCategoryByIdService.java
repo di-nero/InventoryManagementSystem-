@@ -2,13 +2,11 @@ package com.example.InventoryManagementSystem.inventory.system.Service.CategoryS
 
 import com.example.InventoryManagementSystem.inventory.system.Mapper.Mappers;
 import com.example.InventoryManagementSystem.inventory.system.Repositories.CategoryRepository;
-import com.example.InventoryManagementSystem.inventory.system.Response.SimpleResponse;
+import com.example.InventoryManagementSystem.inventory.system.Response.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 @Service
 public class GetCategoryByIdService {
@@ -20,9 +18,9 @@ public class GetCategoryByIdService {
         var result = categoryRepository.findById(id).orElse(null);
         if (result != null) {
             var data = mappers.toCategoryDto(result);
-            return ResponseEntity.ok(SimpleResponse.responseBuilder(true , "category found" , data));
+            return ResponseEntity.ok(ApiResponse.responseBuilder(true , "category found" , data));
         }
         else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(SimpleResponse.responseBuilder(false , "invalid Id" , null));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.responseBuilder(false , "invalid Id" , null));
     }
 }

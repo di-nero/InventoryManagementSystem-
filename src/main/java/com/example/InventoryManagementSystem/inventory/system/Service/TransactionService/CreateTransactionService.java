@@ -7,7 +7,7 @@ import com.example.InventoryManagementSystem.inventory.system.Entities.Transacti
 import com.example.InventoryManagementSystem.inventory.system.Entities.Transactions;
 import com.example.InventoryManagementSystem.inventory.system.Repositories.ProductRepository;
 import com.example.InventoryManagementSystem.inventory.system.Repositories.TransactionRepository;
-import com.example.InventoryManagementSystem.inventory.system.Response.SimpleResponse;
+import com.example.InventoryManagementSystem.inventory.system.Response.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class CreateTransactionService {
             product.setQuantity(transactionsDto.getQuantity() + product.getQuantity());
         } else if (transactionsDto.getType()== TransactionType.DECREASE) {
             if (transactionsDto.getQuantity() > product.getQuantity())
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(SimpleResponse.responseBuilder(false , "only " + product.getQuantity() + " of this product remaining" , null));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.responseBuilder(false , "only " + product.getQuantity() + " of this product remaining" , null));
             product.setQuantity(product.getQuantity() - transactionsDto.getQuantity());
         }
         productRepository.save(product);
@@ -48,6 +48,6 @@ public class CreateTransactionService {
         transactionResponseDto.setQuantityChanged(transactions.getQuantity());
         transactionResponseDto.setRemarks(transactions.getRemarks());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(SimpleResponse.responseBuilder(true , "transaction recorded successfully" , transactionResponseDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.responseBuilder(true , "transaction recorded successfully" , transactionResponseDto));
     }
 }

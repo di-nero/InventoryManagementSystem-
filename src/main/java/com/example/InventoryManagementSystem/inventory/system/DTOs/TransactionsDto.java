@@ -2,6 +2,10 @@ package com.example.InventoryManagementSystem.inventory.system.DTOs;
 
 import com.example.InventoryManagementSystem.inventory.system.Entities.Product;
 import com.example.InventoryManagementSystem.inventory.system.Entities.TransactionType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 public class TransactionsDto {
     private String productName;

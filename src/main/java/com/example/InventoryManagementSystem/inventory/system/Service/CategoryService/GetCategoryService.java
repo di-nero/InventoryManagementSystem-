@@ -19,7 +19,8 @@ public class GetCategoryService {
         return ResponseEntity.ok(categoryRepository
                 .findAll()
                 .stream()
-                .map(category -> mappers.toCategoryDto(category)).toList());
+                .map(category -> mappers.toCategoryDto(category))
+                .toList());
     }
 
 }

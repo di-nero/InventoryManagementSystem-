@@ -3,10 +3,12 @@ package com.example.InventoryManagementSystem.inventory.system.Entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 
 import java.util.List;
@@ -18,6 +20,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "category name is required")
+    @Length(min = 2 , max = 100 , message = "category name must be between 2 to 100 characters")
     @Column(unique = true)
     private String name;
 
@@ -25,6 +29,8 @@ public class Category {
     @JsonManagedReference
     private List<Product> product;
 
+    @NotBlank(message = "category description is required")
+    @Length(max = 225 , message = "category description must be more than 225 characters")
     private String description;
 
     public Long getId() {
